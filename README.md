@@ -3,7 +3,7 @@
 # Social Network Prediction Problems: Using Meta-Paths and Dynamic Heterogeneous Graph Representation for Label Propagation
 
 This archive is distributed in association with the [INFORMS Journal on
-Computing](https://pubsonline.informs.org/journal/ijoc) under the [MIT License]((https://github.com/negarmaleki96/2023.0274/blob/ef429ace556643abbca1f97dd1f4758d4ddbae97/LICENSE.txt)).
+Computing](https://pubsonline.informs.org/journal/ijoc) under the [MIT License](https://github.com/negarmaleki96/2023.0274/blob/ef429ace556643abbca1f97dd1f4758d4ddbae97/LICENSE.txt).
 
 The software and data in this repository are a snapshot of the software and data
 that were used in the research reported on in the paper 
