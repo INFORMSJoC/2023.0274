@@ -7,7 +7,7 @@ Computing](https://pubsonline.informs.org/journal/ijoc) under the [MIT License](
 
 The software and data in this repository are a snapshot of the software and data
 that were used in the research reported on in the paper 
-[This is a Template](https://doi.org/10.1287/ijoc.2023.0274) by N. Maleki, B. Padmanbhan, and K. Dutta. 
+[Social Network Prediction Problems: Using Meta-Paths and Dynamic Heterogeneous Graph Representation for Label Propagation](https://doi.org/10.1287/ijoc.2023.0274) by N. Maleki, B. Padmanbhan, and K. Dutta. 
 The snapshot is based on 
 [this SHA](https://github.com/negarmaleki96/LabelPropagation_MetaPath) 
 in the development repository. 
@@ -31,7 +31,7 @@ Below is the BibTex for citing this snapshot of the repository.
   author =        {N. Maleki, B. Padmanbhan, and K. Dutta},
   publisher =     {INFORMS Journal on Computing},
   title =         {{Social Network Prediction Problems: Using Meta-Paths and Dynamic Heterogeneous Graph Representation for Label Propagation}},
-  year =          {2020},
+  year =          {2025},
   doi =           {10.1287/ijoc.2023.0274.cd},
   url =           {https://github.com/INFORMSJoC/2023.0274},
   note =          {Available for download at https://github.com/INFORMSJoC/2023.0274},
