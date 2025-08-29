@@ -9,7 +9,7 @@ The software and data in this repository are a snapshot of the software and data
 that were used in the research reported on in the paper 
 [Social Network Prediction Problems: Using Meta-Paths and Dynamic Heterogeneous Graph Representation for Label Propagation](https://doi.org/10.1287/ijoc.2023.0274) by N. Maleki, B. Padmanbhan, and K. Dutta. 
 The snapshot is based on 
-[this SHA](https://github.com/negarmaleki96/LabelPropagation_MetaPath) 
+[this repository](https://github.com/negarmaleki96/LabelPropagation_MetaPath) 
 in the development repository. 
 
 **Important: This code is being developed on an on-going basis at 
