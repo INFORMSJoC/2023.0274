@@ -14,6 +14,16 @@ import pandas as pd
 import numpy as np
 import torch
 from warnings import filterwarnings
+from sentence_transformers import SentenceTransformer
+import preprocessor as p
+from bs4 import BeautifulSoup
+import re
+import demoji
+import string
+import tensorflow as tf
+import tensorflow_hub as hub
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+import torch.nn.functional as F
 filterwarnings("ignore")
 
 G_train = nx.read_gpickle(".../g_train+test.gpickle")
@@ -119,7 +129,6 @@ print(len(vote_count_train))
 print(len(comment_count_train))"""
 
 """# relabel the graph
-import numpy as np
 def relable(G):
     keys = np.array(list(G.nodes))
     values = [int(i) for i in np.arange(0, len(G.nodes))]
@@ -171,7 +180,6 @@ print(counting_train)
 df = pd.DataFrame(p_category_train)
 
 # encoding labels
-from sklearn.preprocessing import LabelEncoder
 label_encoder = LabelEncoder()
 p_category_train = label_encoder.fit_transform(p_category_train)
 print(p_category_train)
@@ -179,14 +187,6 @@ print(p_category_train)
 df['label'] = p_category_train
 #df.to_csv(".../label.csv")
 
-import preprocessor as p
-import pandas as pd
-from bs4 import BeautifulSoup
-import re
-import demoji
-import string
-import tensorflow as tf
-import tensorflow_hub as hub
 
 # preprocess text
 print("Text pre-processing start...")
@@ -235,11 +235,9 @@ p_body_train_embeddings = model(p_body_train).numpy()"""
 
 # saving embedding
 print("saving start")
-import pandas as pd
 #pd.DataFrame(p_body_train_embeddings).to_csv(".../train_test_embeddings.csv")
 print("Embedding Saving is Done!")
 
-from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('bert-base-nli-mean-tokens')
 #Encoding:
 p_body_train_embeddings = model.encode(p_body_train)
@@ -253,7 +251,6 @@ p_body_train_embeddings = a_.values.astype('float32')
 print("Embedding Imported!")"""
 
 # putting all info so far in a dataframe
-import pandas as pd
 post_df_train = pd.concat([pd.DataFrame(p_body_train_embeddings),
                            pd.DataFrame(p_category_train, columns=['category']),
                            pd.DataFrame(p_payout_train, columns=['payout']),
@@ -269,7 +266,7 @@ dataset_train = pd.concat([post_df_train, comment_df_train], ignore_index=True, 
 df_otype_train = pd.concat([pd.DataFrame(c_otype_train, columns=['otype']),
                      pd.DataFrame(u_otype_train, columns=['otype'])],ignore_index=True, axis=0)
 
-from sklearn.preprocessing import OneHotEncoder
+
 # creating instance of one-hot-encoder
 enc_train = OneHotEncoder(handle_unknown='ignore')
 # passing bridge-types-cat column (label encoded values of bridge_types)
@@ -355,7 +352,6 @@ c_otype_u_train = torch.tensor(c_otype_u_train).float()
 c_otype_c_train = torch.tensor(c_otype_c_train).float()
 
 # normalize
-import torch.nn.functional as F
 #vote_count_train = F.normalize(vote_count_train, dim=-1)
 #comment_count_train = F.normalize(comment_count_train, dim=-1)
 
@@ -519,11 +515,10 @@ data_train['user', 'vote_comment', 'comment'].edge_attr = torch.cat([v_c_otype_t
 data_train['post', 'reply', 'comment'].edge_attr = torch.cat([r_otype_train, r_time_train], dim=-1)
 
 # create edge reverse
-import torch_geometric.transforms as T
+
 data_train = T.ToUndirected()(data_train)
 #data_train = T.RandomNodeSplit('train_rest', num_val=190, num_test=3)(data_train)
 
 # saving the graphs
-import dill
 print("Saving Heterogeneous Graph!")
 dill.dump(data_train, open('.../train+test.pk', 'wb'))
