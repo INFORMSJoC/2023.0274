@@ -6,13 +6,27 @@ Created on Wed Mar 15 18:34:33 2023
 @author: negarmaleki
 """
 
+# Import packages
 import pandas as pd
+import numpy as np
+from langdetect import detect
+import networkx as nx
+import json
+import ast
+import math
+from datetime import datetime
+from sklearn.preprocessing import LabelEncoder
+import preprocessor as p
+from bs4 import BeautifulSoup
+import re
+import demoji
+import string
+import tensorflow as tf
+import tensorflow_hub as hub
+
 # Load Steemit Dataset
 data_steemit = pd.read_csv(".../posts_dataset_10percent.csv")
 data_steemit.drop('Unnamed: 0', axis=1, inplace=True)
-
-#data_steemit.groupby(['category'])['category'].count().sort_values(ascending=False).to_csv(".../categories.csv")
-
 
 # Selecting category
 data_category = data_steemit[(data_steemit.parent_permlink == 'photography') |
@@ -28,8 +42,6 @@ data_category = data_steemit[(data_steemit.parent_permlink == 'photography') |
               (data_steemit.parent_permlink == 'meditation')]"""
 
 # Selecting english body
-from langdetect import detect
-
 language = []
 for i in range(len(data_category)):
     try:
@@ -91,14 +103,6 @@ data_category = data_cat
 
 data_cat.to_csv(".../health_data_same_num.csv")
 
-import pandas as pd
-import networkx as nx
-import json
-import ast
-import math
-from datetime import datetime
-from sklearn.preprocessing import LabelEncoder
-
 print("read main data")
 data_category = pd.read_csv(".../health_data_same_num.csv")
 data_category.drop('Unnamed: 0', axis=1, inplace=True)
@@ -106,9 +110,6 @@ data_category.drop('Unnamed: 0', axis=1, inplace=True)
 
 label_encoder = LabelEncoder()
 y_node = label_encoder.fit_transform(data_category['category'].to_list())
-
-#for i in range(1723, len(y_node)):
-#    y_node[i] = -1
 
 data_category['category_encode'] = y_node
 
@@ -120,17 +121,9 @@ data_category['timestamp']=tsamp
 data_category.sort_values(by=['timestamp'], inplace=True)
 data_category.reset_index(drop=True, inplace=True)
 data_category.to_csv(".../fivecat300_data_same_num.csv")
-#data_category = data_category.iloc[:1723,:]
 
-"""import preprocessor as p
-import pandas as pd
-from bs4 import BeautifulSoup
-import re
-import demoji
-import string
-import tensorflow as tf
-import tensorflow_hub as hub
-
+# Uncomment this section if the post content is required
+"""
 # preprocess text
 print("Text pre-processing start...")
 CLEANR = re.compile('<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});')
@@ -180,7 +173,6 @@ print(count)
 data_category.to_csv(".../health_data_same_num.csv")"""
 
 # create a Graph
-#G = nx.DiGraph()
 G = nx.Graph()
 for i in range(len(data_category)):
     print("First Loop, round: ", i)
@@ -238,7 +230,6 @@ for i in range(len(data_category)):
             except:
                 pass
 
-import numpy as np
 keys = np.array(list(G.nodes))
 values = [int(i) for i in np.arange(0, len(G.nodes))]
 dic = dict(zip(keys, values))
@@ -370,7 +361,6 @@ def author(aug_sep_2019, G):
 G_train = author(data_category, G_train)
 
 
-import numpy as np
 def relable(G):
     keys = np.array(list(G.nodes))
     values = [int(i) for i in np.arange(0, len(G.nodes))]
