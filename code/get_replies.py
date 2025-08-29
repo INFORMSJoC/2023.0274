@@ -16,7 +16,7 @@ s = Steem()
 
 # Load Steemit Dataset
 data_steemit = pd.read_csv(".../fivecat1000_data_same_num.csv")
-#data_steemit = pd.read_csv(".../health_data_same_num.csv")
+#data_steemit = pd.read_csv(".../health_data_same_num.csv")  ### Uncomment this line if need to run the health dataset and instead comment out line 18
 data_steemit.drop('Unnamed: 0', axis=1, inplace=True)
 
 # Retriving posts with API
@@ -35,4 +35,4 @@ for t in range(int(len(data_steemit)/2000)+1):
 
 replies_dataset = pd.DataFrame(posts)
 replies_dataset.to_csv(".../fivecat300_data_replies_train+test.csv")
-#replies_dataset.to_csv(".../health_data_replies_train+test.csv")
+#replies_dataset.to_csv(".../health_data_replies_train+test.csv")  ### Uncomment this line if need to run the health dataset and instead comment out line 37
