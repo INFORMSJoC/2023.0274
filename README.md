@@ -27,10 +27,10 @@ https://doi.org/10.1287/ijoc.2023.0274.cd
 Below is the BibTex for citing this snapshot of the repository.
 
 ```
-@misc{Social Network Prediction Problems: Using Meta-Paths and Dynamic Heterogeneous Graph Representation for Label Propagation,
-  author =        {N. Maleki, B. Padmanbhan, and K. Dutta},
+@misc{Maleki2025,
+  author =        {Maleki, Negar and Padmanabhan, Balaji and Dutta, Kaushik},
   publisher =     {INFORMS Journal on Computing},
-  title =         {{Social Network Prediction Problems: Using Meta-Paths and Dynamic Heterogeneous Graph Representation for Label Propagation}},
+  title =         {Social Network Prediction Problems: Using Meta-Paths and Dynamic Heterogeneous Graph Representation for Label Propagation},
   year =          {2025},
   doi =           {10.1287/ijoc.2023.0274.cd},
   url =           {https://github.com/INFORMSJoC/2023.0274},
